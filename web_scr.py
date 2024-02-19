@@ -1,9 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 from dataclasses import dataclass
-from typing import List
-import pandas as pd
-
 
 @dataclass
 class Car:
@@ -35,7 +32,7 @@ class Scraper:
         }
         self.website = "https://www.otomoto.pl/osobowe"
 
-    def scrape_pages(self, number_of_pages: int) -> List[Car]:
+    def scrape_pages(self, number_of_pages: int):
         cars = []
         for j in range(1, number_of_pages + 1):
             current_website = f"{self.website}?page={j}"
@@ -44,7 +41,7 @@ class Scraper:
                 cars.extend(new_cars)
         return cars
 
-    def scrape_cars_from_current_page(self, current_website: str) -> List[Car]:
+    def scrape_cars_from_current_page(self, current_website: str):
         try:
             response = requests.get(current_website, headers=self.headers).text
             soup = BeautifulSoup(response, "html.parser")
@@ -87,10 +84,16 @@ class Scraper:
                     paragraph = div.find('p', class_='e16lfxpc0').get_text(strip=True)
                     dic[item] = paragraph
                 one_car_details.append(dic)
+            price = soup.find('h3', class_='offer-price__number').get_text(strip=True)
+            d = {'Cena': price}
+            one_car_details.append(d)
             return one_car_details
         except Exception as e:
             print(f"Problem with scraping website, reason: {e}")
             return []
 
 
-
+if __name__ == '__main__':
+    sc = Scraper()
+    lista = sc.scrape_pages(1)
+    print(lista[0], lista[1])
