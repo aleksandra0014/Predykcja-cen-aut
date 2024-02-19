@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 from dataclasses import dataclass
 from typing import List
+import pandas as pd
 
 
 @dataclass
@@ -36,8 +37,8 @@ class Scraper:
 
     def scrape_pages(self, number_of_pages: int) -> List[Car]:
         cars = []
-        for i in range(1, number_of_pages + 1):
-            current_website = f"{self.website}?page={i}"
+        for j in range(1, number_of_pages + 1):
+            current_website = f"{self.website}?page={j}"
             new_cars = self.scrape_cars_from_current_page(current_website)
             if new_cars:
                 cars.extend(new_cars)
@@ -92,7 +93,4 @@ class Scraper:
             return []
 
 
-sc = Scraper()
-lista = sc.scrape_pages(1)
-for i in lista[:3]:
-    print(i)
+
