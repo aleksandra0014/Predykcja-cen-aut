@@ -1,22 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from dataclasses import dataclass
-
-@dataclass
-class Car:
-    brand: str
-    full_name: str
-    year: int
-    mileage_km: str
-    engine_capacity: str
-    fuel_type: str
-    price_pln: int
-    colour: str
-    type: str
-    gear_box: str
-    num_place: int
-    num_doors: int
-    condition: str
 
 
 class Scraper:
