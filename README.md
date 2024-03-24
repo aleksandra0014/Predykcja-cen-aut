@@ -1,4 +1,5 @@
-# Predykcja-cen-aut
-Projekt dotyczy web scrapingu ze strony oto moto. Użyte dane ze strony posłużyły mi do analizy samochodów, cen na 
-stronie. Na koniec przy użyciu regresji i random forest stworzony został model oraz jego ocena, służącego do predykcji 
-cen aut. 
+# Car Price Prediction + Web Scraping
+
+The project involves web scraping utilizing the Otomoto website - https://www.otomoto.pl/. The data extracted from the website was used for the analysis of car prices and properties. Additionally, I created 3 models for predicting car prices: linear regression, polynomial regression, and random forest.
+
+Libraries used: pandas, sklearn, seaborn, matplotlib, scipy, numpy, requests, bs4
